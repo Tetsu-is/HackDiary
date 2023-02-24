@@ -28,7 +28,8 @@
     "next-seo": "^5.15.0",
     "next-sitemap": "^3.1.52",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "tabler-icons-react": "^1.56.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",

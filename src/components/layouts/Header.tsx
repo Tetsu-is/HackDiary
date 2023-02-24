@@ -9,8 +9,7 @@ export const AppHeader: FC = () => {
       }}
     >
       <Box>アイコン</Box>
-      <Text size="xl">ここはヘッダーです</Text>
-      <Text size="xl">ここにサイドバーも作ろう</Text>
+      <Text size="xl">Diary</Text>
       <Anchor href="/contact">
         <Text size="xl">コンタクトページに遷移する</Text>
       </Anchor>
