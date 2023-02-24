@@ -19,11 +19,7 @@ const Index = () => {
       <Button color="red" className="font-mono" onClick={handleToglle}>
         Hello world
       </Button>
-      <div>
-        <head>
-          <script type="text/javascript">function init() {}</script>
-        </head>
-      </div>
+      <div></div>
     </AppLayout>
   );
 };
