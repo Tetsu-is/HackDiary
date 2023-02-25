@@ -14,7 +14,7 @@ import { useState } from 'react';
 import { RecoilRoot } from 'recoil';
 
 import { AppLayout } from '@/components/layouts/layout';
-import { useCurrentDiaryList } from '@/globalstates/atom';
+import { useCurrentDiaryList } from '@/global-states/atom';
 
 // rootのページ
 const Index = () => {
