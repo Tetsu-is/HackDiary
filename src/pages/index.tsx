@@ -26,10 +26,23 @@ const Index = () => {
   };
 
   const displayCircles = () => {
+    const handleMouseEnter = (e: any) => {
+      e.target.style.transform = 'scale(2)';
+      e.target.style.zIndex = '20';
+    };
+    const handleMouseLeave = (e: any) => {
+      e.target.style.transform = 'scale(1)';
+      e.target.style.zIndex = '10';
+    };
     const circles = [];
     for (let i = 0; i < 15; i += 1) {
       circles.push(
-        <p key={i} className="circle">
+        <p
+          key={i}
+          className="circle"
+          onMouseEnter={handleMouseEnter}
+          onMouseLeave={handleMouseLeave}
+        >
           {i}
         </p>
       );
@@ -75,7 +88,7 @@ const Index = () => {
                 ]}
                 {...form.getInputProps('activity')}
               />
-              <text>Details</text>
+              <h1>Details</h1>
               <Box sx={{ maxWidth: 300 }} mx="auto">
                 <TextInput
                   withAsterisk
@@ -101,9 +114,9 @@ const Index = () => {
         </ScrollArea>
 
         <Button onClick={handleToglle}>toggle</Button>
-
         {form.values.activity}
         {form.values.details}
+        {form.values.date.toString()}
       </AppLayout>
     </RecoilRoot>
   );
