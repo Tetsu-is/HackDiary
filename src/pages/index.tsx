@@ -3,13 +3,16 @@ import { Box, Button, Group, Select, TextInput } from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/form';
 import { useState } from 'react';
+import { RecoilRoot } from 'recoil';
 
 import { AppLayout } from '@/components/layouts/layout';
+import type { Diary } from '@/globalstates/atom';
+import { useCurrentDiaryList } from '@/globalstates/atom';
 
 // rootのページ
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const { currentDiaryList, setCurrentDiaryList } = useCurrentDiaryList();
   const handleToglle = () => {
     setIsOpen(!isOpen);
   };
@@ -22,51 +25,60 @@ const Index = () => {
     },
   });
 
+  const saveDiary = (newData: Diary) => {
+    setCurrentDiaryList(() => [...currentDiaryList, newData]);
+  };
+
+  console.log(currentDiaryList);
+
   return (
-    <AppLayout>
-      {isOpen ? (
-        <div>
-          <form onSubmit={form.onSubmit((values) => console.log(values))}>
-            <DatePicker
-              placeholder="Click here to choose date"
-              label="Date"
-              withAsterisk
-              {...form.getInputProps('date')}
-            />
-            <Select
-              label="Activity"
-              placeholder="Pick one"
-              data={[
-                { value: 'walk', label: 'Walk to' },
-                { value: 'drive', label: 'Drive to' },
-                { value: 'stay', label: 'Stay at ' },
-                { value: 'eat', label: 'Eat' },
-              ]}
-              {...form.getInputProps('activity')}
-            />
-            <text>Details</text>
-            <Box sx={{ maxWidth: 300 }} mx="auto">
-              <TextInput
+    <RecoilRoot>
+      const exampledata = useRecoilState(datas);
+      <AppLayout>
+        {isOpen ? (
+          <div>
+            <form onSubmit={form.onSubmit((values) => console.log(values))}>
+              <DatePicker
+                placeholder="Click here to choose date"
+                label="Date"
                 withAsterisk
-                label="Detais Here"
-                placeholder="your@email.com"
-                {...form.getInputProps('details')}
+                {...form.getInputProps('date')}
               />
+              <Select
+                label="Activity"
+                placeholder="Pick one"
+                data={[
+                  { value: 'walk', label: 'Walk to' },
+                  { value: 'drive', label: 'Drive to' },
+                  { value: 'stay', label: 'Stay at ' },
+                  { value: 'eat', label: 'Eat' },
+                ]}
+                {...form.getInputProps('activity')}
+              />
+              <text>Details</text>
+              <Box sx={{ maxWidth: 300 }} mx="auto">
+                <TextInput
+                  withAsterisk
+                  label="Detais Here"
+                  placeholder="your@email.com"
+                  {...form.getInputProps('details')}
+                />
 
-              <Group position="right" mt="md">
-                <Button type="submit">Submit</Button>
-              </Group>
-            </Box>
-          </form>
-        </div>
-      ) : (
-        <></>
-      )}
-      <Button onClick={handleToglle}>toggle</Button>
+                <Group position="right" mt="md">
+                  <Button onClick={() => saveDiary(form.values)}>Submit</Button>
+                </Group>
+              </Box>
+            </form>
+          </div>
+        ) : (
+          <></>
+        )}
+        <Button onClick={handleToglle}>toggle</Button>
 
-      {form.values.activity}
-      {form.values.details}
-    </AppLayout>
+        {form.values.activity}
+        {form.values.details}
+      </AppLayout>
+    </RecoilRoot>
   );
 };
 
