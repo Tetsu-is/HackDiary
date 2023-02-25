@@ -14,12 +14,13 @@ import { useState } from 'react';
 import { RecoilRoot } from 'recoil';
 
 import { AppLayout } from '@/components/layouts/layout';
+import type { Diary } from '@/global-states/atom';
 import { useCurrentDiaryList } from '@/global-states/atom';
 
 // rootのページ
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { currentDiaryList } = useCurrentDiaryList();
+  const { currentDiaryList, setCurrentDiaryList } = useCurrentDiaryList();
   //  setCurrentDiaryList
   const handleToglle = () => {
     setIsOpen(!isOpen);
@@ -45,9 +46,11 @@ const Index = () => {
     },
   });
 
-  // const saveDiary = (newData: Diary) => {
-  // setCurrentDiaryList(() => [...currentDiaryList, newData]);
-  // };
+  const saveDiary = (newData: Diary) => {
+    setCurrentDiaryList(() => [...currentDiaryList, newData]);
+  };
+
+  saveDiary('', '', '');
 
   console.log(currentDiaryList);
 
@@ -85,7 +88,7 @@ const Index = () => {
                 />
 
                 <Group position="right" mt="md">
-                  <Button type="submit">Submit</Button>
+                  <Button>Submit</Button>
                 </Group>
               </Box>
             </form>
