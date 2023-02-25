@@ -1,20 +1,40 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { Box, Button, Group, Select, TextInput } from '@mantine/core';
+import {
+  Box,
+  Button,
+  Flex,
+  Group,
+  ScrollArea,
+  Select,
+  TextInput,
+} from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/form';
 import { useState } from 'react';
 import { RecoilRoot } from 'recoil';
 
 import { AppLayout } from '@/components/layouts/layout';
-import type { Diary } from '@/globalstates/atom';
 import { useCurrentDiaryList } from '@/globalstates/atom';
 
 // rootのページ
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { currentDiaryList, setCurrentDiaryList } = useCurrentDiaryList();
+  const { currentDiaryList } = useCurrentDiaryList();
+  //  setCurrentDiaryList
   const handleToglle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const displayCircles = () => {
+    const circles = [];
+    for (let i = 0; i < 15; i += 1) {
+      circles.push(
+        <p key={i} className="circle">
+          {i}
+        </p>
+      );
+    }
+    return circles;
   };
 
   const form = useForm({
@@ -25,9 +45,9 @@ const Index = () => {
     },
   });
 
-  const saveDiary = (newData: Diary) => {
-    setCurrentDiaryList(() => [...currentDiaryList, newData]);
-  };
+  // const saveDiary = (newData: Diary) => {
+  // setCurrentDiaryList(() => [...currentDiaryList, newData]);
+  // };
 
   console.log(currentDiaryList);
 
@@ -65,7 +85,7 @@ const Index = () => {
                 />
 
                 <Group position="right" mt="md">
-                  <Button onClick={() => saveDiary(form.values)}>Submit</Button>
+                  <Button type="submit">Submit</Button>
                 </Group>
               </Box>
             </form>
@@ -73,6 +93,13 @@ const Index = () => {
         ) : (
           <></>
         )}
+
+        <ScrollArea scrollbarSize={0}>
+          <Flex gap="md" direction="row" justify="center">
+            {displayCircles()}
+          </Flex>
+        </ScrollArea>
+
         <Button onClick={handleToglle}>toggle</Button>
 
         {form.values.activity}
