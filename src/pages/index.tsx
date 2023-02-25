@@ -14,7 +14,6 @@ import { useState } from 'react';
 import { RecoilRoot } from 'recoil';
 
 import { AppLayout } from '@/components/layouts/layout';
-// import type { Diary } from '@/global-states/atom';
 import { useCurrentDiaryList } from '@/global-states/atom';
 
 // rootのページ
