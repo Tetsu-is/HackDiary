@@ -1,9 +1,15 @@
-
 /* eslint-disable import/no-extraneous-dependencies */
-import { Box, Button, Group, Select, TextInput ,Flex, Input, ScrollArea, Text } from '@mantine/core';
+import {
+  Box,
+  Button,
+  Flex,
+  Group,
+  ScrollArea,
+  Select,
+  TextInput,
+} from '@mantine/core';
 import { DatePicker } from '@mantine/dates';
 import { useForm } from '@mantine/form';
-
 import { useState } from 'react';
 
 import { AppLayout } from '@/components/layouts/layout';
@@ -16,10 +22,9 @@ const Index = () => {
     setIsOpen(!isOpen);
   };
 
-
   const displayCircles = () => {
     const circles = [];
-    for (let i = 0; i < 15; i + 1) {
+    for (let i = 0; i < 15; i += 1) {
       circles.push(
         <p key={i} className="circle">
           {i}
@@ -36,7 +41,6 @@ const Index = () => {
       date: '2023/01/01',
     },
   });
-
 
   return (
     <AppLayout>
@@ -89,7 +93,6 @@ const Index = () => {
 
       {form.values.activity}
       {form.values.details}
-
     </AppLayout>
   );
 };
