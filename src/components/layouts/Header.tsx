@@ -1,18 +1,38 @@
-import { Anchor, Box, Text } from '@mantine/core';
+import { Anchor, Box, Flex, Image, Text } from '@mantine/core';
 import type { FC } from 'react';
 
 export const AppHeader: FC = () => {
   return (
-    <Box
+    <Flex
       sx={{
-        backgroundColor: 'gray',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        height: '100%',
       }}
     >
-      <Box>アイコン</Box>
-      <Text size="xl">Diary</Text>
-      <Anchor href="/contact">
-        <Text size="xl">コンタクトページに遷移する</Text>
+      <Anchor>
+        <Flex gap={8}>
+          <Image
+            src="assets/images/Diary_1.png"
+            height={36}
+            width={39}
+            alt={'アイキャッチ'}
+          />
+          <Flex
+            sx={{ marginLeft: '10px', marginBottom: '10px', fontSize: 132 }}
+          >
+            <Text weight="bold" sx={{ fontSize: 30 }}>
+              Diary
+            </Text>
+          </Flex>
+        </Flex>
       </Anchor>
-    </Box>
+
+      <Box>
+        <Anchor href="/">
+          <Text>コンタクトページに遷移する</Text>
+        </Anchor>
+      </Box>
+    </Flex>
   );
 };
