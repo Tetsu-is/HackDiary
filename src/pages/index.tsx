@@ -50,9 +50,9 @@ const Index = () => {
     setCurrentDiaryList(() => [...currentDiaryList, newData]);
   };
 
-  saveDiary('', '', '');
+  saveDiary(form.values);
 
-  console.log(currentDiaryList);
+  // console.log(currentDiaryList);
 
   return (
     <RecoilRoot>
