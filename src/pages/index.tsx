@@ -89,12 +89,12 @@ const Index = () => {
                 ]}
                 {...form.getInputProps('activity')}
               />
-              <h1>Details</h1>
-              <Box sx={{ maxWidth: 300 }} mx="auto">
+              <h3>Details</h3>
+              <Box>
                 <TextInput
                   withAsterisk
-                  label="Detais Here"
-                  placeholder="your@email.com"
+                  label=""
+                  placeholder="details here"
                   {...form.getInputProps('details')}
                 />
 
