@@ -1,7 +1,6 @@
 import { AppShell, Header } from '@mantine/core';
 import type { FC } from 'react';
 
-import { NavbarSimple } from '../Navbar';
 import { AppHeader } from './Header';
 
 type Props = {
@@ -13,7 +12,7 @@ export const AppLayout: FC<Props> = ({ children }) => {
     <>
       <AppShell
         padding="md"
-        navbar={<NavbarSimple />}
+        // Navber deleted
         header={
           <Header height={60} p="xs">
             {/* Header content */}
