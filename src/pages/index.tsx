@@ -1,4 +1,9 @@
-import { Button, Flex, Input, ScrollArea, Text } from '@mantine/core';
+
+/* eslint-disable import/no-extraneous-dependencies */
+import { Box, Button, Group, Select, TextInput ,Flex, Input, ScrollArea, Text } from '@mantine/core';
+import { DatePicker } from '@mantine/dates';
+import { useForm } from '@mantine/form';
+
 import { useState } from 'react';
 
 import { AppLayout } from '@/components/layouts/layout';
@@ -10,6 +15,7 @@ const Index = () => {
   const handleToglle = () => {
     setIsOpen(!isOpen);
   };
+
 
   const displayCircles = () => {
     const circles = [];
@@ -23,30 +29,67 @@ const Index = () => {
     return circles;
   };
 
+  const form = useForm({
+    initialValues: {
+      details: 'd',
+      activity: 'a',
+      date: '2023/01/01',
+    },
+  });
+
+
   return (
     <AppLayout>
-      <h2 className="text-2xl font-bold">
-        Boilerplate code for your Nextjs project with Tailwind CSS
-      </h2>
-      <Button color="red" className="font-mono" onClick={handleToglle}>
-        toggle boolean
-      </Button>
-      <Text>{isOpen ? 'true' : 'false'}</Text>
       {isOpen ? (
         <div>
-          <Input placeholder="Your email" />
-          <Button color="blue">aa</Button>
-          <Text>aaaaaaaaaaaaaassssee</Text>
+          <form onSubmit={form.onSubmit((values) => console.log(values))}>
+            <DatePicker
+              placeholder="Click here to choose date"
+              label="Date"
+              withAsterisk
+              {...form.getInputProps('date')}
+            />
+            <Select
+              label="Activity"
+              placeholder="Pick one"
+              data={[
+                { value: 'walk', label: 'Walk to' },
+                { value: 'drive', label: 'Drive to' },
+                { value: 'stay', label: 'Stay at ' },
+                { value: 'eat', label: 'Eat' },
+              ]}
+              {...form.getInputProps('activity')}
+            />
+            <text>Details</text>
+            <Box sx={{ maxWidth: 300 }} mx="auto">
+              <TextInput
+                withAsterisk
+                label="Detais Here"
+                placeholder="your@email.com"
+                {...form.getInputProps('details')}
+              />
+
+              <Group position="right" mt="md">
+                <Button type="submit">Submit</Button>
+              </Group>
+            </Box>
+          </form>
         </div>
       ) : (
-        <div>false</div>
+        <></>
       )}
-      {/* <ScrollArea  style={{ width: "100%", height: 200 ,}}> */}
+
       <ScrollArea scrollbarSize={0}>
         <Flex gap="md" direction="row" justify="center">
           {displayCircles()}
         </Flex>
       </ScrollArea>
+
+      <Button onClick={handleToglle}>toggle</Button>
+
+      {form.values.activity}
+      {form.values.details}
+
     </AppLayout>
   );
 };

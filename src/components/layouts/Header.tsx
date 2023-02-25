@@ -5,13 +5,13 @@ export const AppHeader: FC = () => {
   return (
     <Box
       sx={{
-        backgroundColor: 'gray',
+        backgroundColor: 'orange',
       }}
     >
       <Box>アイコン</Box>
       <Text size="xl">Diary</Text>
       <Anchor href="/contact">
-        <Text size="xl">コンタクトページに遷移する</Text>
+        <Text size="xl"></Text>
       </Anchor>
     </Box>
   );
