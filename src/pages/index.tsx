@@ -1,4 +1,4 @@
-import { Button, Input, Text } from '@mantine/core';
+import { Button, Flex, Input, ScrollArea, Text } from '@mantine/core';
 import { useState } from 'react';
 
 import { AppLayout } from '@/components/layouts/layout';
@@ -9,6 +9,18 @@ const Index = () => {
 
   const handleToglle = () => {
     setIsOpen(!isOpen);
+  };
+
+  const displayCircles = () => {
+    const circles = [];
+    for (let i = 0; i < 15; i + 1) {
+      circles.push(
+        <p key={i} className="circle">
+          {i}
+        </p>
+      );
+    }
+    return circles;
   };
 
   return (
@@ -29,6 +41,12 @@ const Index = () => {
       ) : (
         <div>false</div>
       )}
+      {/* <ScrollArea  style={{ width: "100%", height: 200 ,}}> */}
+      <ScrollArea scrollbarSize={0}>
+        <Flex gap="md" direction="row" justify="center">
+          {displayCircles()}
+        </Flex>
+      </ScrollArea>
     </AppLayout>
   );
 };
