@@ -68,6 +68,7 @@ const Index = () => {
     <RecoilRoot>
       const exampledata = useRecoilState(datas);
       <AppLayout>
+        <Button onClick={handleToglle}>toggle</Button>
         {isOpen ? (
           <div>
             <form onSubmit={form.onSubmit((values) => console.log(values))}>
@@ -113,7 +114,6 @@ const Index = () => {
           </Flex>
         </ScrollArea>
 
-        <Button onClick={handleToglle}>toggle</Button>
         {form.values.activity}
         {form.values.details}
         {form.values.date.toString()}
