@@ -11,10 +11,10 @@ export const AppLayout: FC<Props> = ({ children }) => {
   return (
     <>
       <AppShell
-        padding="md"
+        padding={0}
         // Navber deleted
         header={
-          <Header height={80} p="xs">
+          <Header height={60} p="0">
             {/* Header content */}
             <AppHeader />
           </Header>
