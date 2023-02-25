@@ -52,7 +52,7 @@ const Index = () => {
 
   saveDiary(form.values);
 
-  console.log(currentDiaryList);
+  // console.log(currentDiaryList);
 
   return (
     <RecoilRoot>
