@@ -34,24 +34,22 @@ export const AppHeader: FC = () => {
         </Anchor>
 
         <Flex sx={{ marginLeft: '10px', marginTop: '5px', fontSize: 132 }}>
-          <Text weight="bold" sx={{ fontSize: 20 }}>
+          <Text weight="bold" sx={{ fontSize: 30 }} width="200px">
             ~ 爆速日記 ~
           </Text>
         </Flex>
       </Flex>
 
-      <Flex sx={{ marginLeft: '1100px' }}>
+      <Flex gap={8} sx={{ paddingRight: '10px ' }}>
         <Anchor>
           <Image
             src="assets/images/twitterIcon.png"
-            height={45}
-            width={56}
+            height={50}
+            width={50}
             alt={'アイキャッチ'}
           />
         </Anchor>
-      </Flex>
 
-      <Flex sx={{ marginRight: '20px' }}>
         <Group position="center">
           <Button
             color="gray"
