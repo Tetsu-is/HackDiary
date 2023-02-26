@@ -1,4 +1,5 @@
 import '../styles/global.css';
+import '../styles/header.css';
 import '../styles/diary.css';
 
 import { MantineProvider } from '@mantine/core';
