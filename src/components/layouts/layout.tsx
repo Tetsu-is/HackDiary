@@ -12,7 +12,6 @@ export const AppLayout: FC<Props> = ({ children }) => {
     <>
       <AppShell
         padding={0}
-
         // Navber deleted
         header={
           <Header height={60} p="0">

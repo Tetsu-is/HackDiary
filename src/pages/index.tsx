@@ -20,6 +20,7 @@ import { useCurrentDiaryList } from '@/global-states/atom';
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { currentDiaryList, setCurrentDiaryList } = useCurrentDiaryList();
+  // const {totalCircles, setCircles} = useState([]);
   //  setCurrentDiaryList
   const handleToglle = () => {
     setIsOpen(!isOpen);
@@ -35,7 +36,11 @@ const Index = () => {
       e.target.style.zIndex = '10';
     };
     const circles = [];
-    for (let i = 0; i < 15; i += 1) {
+    for (let i = 0; i < currentDiaryList.length; i += 1) {
+      const date = currentDiaryList[i]?.date;
+      // const activity = currentDiaryList[i]?.activity;
+      // const details = currentDiaryList[i]?.details;
+      console.log(date);
       circles.push(
         <p
           key={i}
@@ -43,10 +48,11 @@ const Index = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          {i}
+          {date?.toString()}
         </p>
       );
     }
+
     return circles;
   };
 
@@ -117,6 +123,7 @@ const Index = () => {
         {form.values.activity}
         {form.values.details}
         {form.values.date.toString()}
+        {currentDiaryList.values}
       </AppLayout>
     </RecoilRoot>
   );
