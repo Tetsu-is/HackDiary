@@ -43,7 +43,7 @@ export const AppHeader: FC = () => {
       <Flex gap={8} sx={{ paddingRight: '10px ' }}>
         <Anchor>
           <Image
-            src="assets/images/twitterIcon.png"
+            src="/assets/images/フレンド追加.jpg"
             height={50}
             width={50}
             alt={'アイキャッチ'}
