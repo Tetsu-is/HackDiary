@@ -58,9 +58,9 @@ const Index = () => {
 
   const form = useForm({
     initialValues: {
-      details: 'd',
-      activity: 'a',
-      date: '2023/01/01',
+      details: '',
+      activity: '',
+      date: '',
     },
   });
 
@@ -69,12 +69,11 @@ const Index = () => {
   };
 
   console.log(currentDiaryList);
-
   return (
     <RecoilRoot>
       const exampledata = useRecoilState(datas);
       <AppLayout>
-        <Button onClick={handleToglle}>toggle</Button>
+        <Button onClick={handleToglle}>New</Button>
         {isOpen ? (
           <div>
             <form onSubmit={form.onSubmit((values) => console.log(values))}>
@@ -119,11 +118,6 @@ const Index = () => {
             {displayCircles()}
           </Flex>
         </ScrollArea>
-
-        {form.values.activity}
-        {form.values.details}
-        {form.values.date.toString()}
-        {currentDiaryList.values}
       </AppLayout>
     </RecoilRoot>
   );

@@ -10,7 +10,7 @@ export const currentDiaryListState = atom<Diary[]>({
   key: 'datas',
   default: [
     {
-      date: '1234',
+      date: '2023/2/23',
       activity: 'walk',
       details: 'School',
     },
