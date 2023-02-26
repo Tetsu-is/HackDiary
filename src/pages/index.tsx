@@ -21,6 +21,7 @@ import { useCurrentDiaryList } from '@/globalstates/atom';
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [isTrue] = useState(true);
+  const [selectedIndex, setselectedIndex] = useState(0);
   const { currentDiaryList, setCurrentDiaryList } = useCurrentDiaryList();
   // const {totalCircles, setCircles} = useState([]);
   //  setCurrentDiaryList
@@ -39,10 +40,11 @@ const Index = () => {
       e.target.style.transform = 'scale(1)';
       e.target.style.zIndex = '10';
     };
-    const handleMouseDown = (e: any) => {
+    const handleMouseDown = (i: number, e: any) => {
       e.target.style.transform = 'scale(2)';
       e.target.style.zIndex = '20';
-      console.log('mouseDown');
+      console.log('mouseDown', i);
+      setselectedIndex(i);
     };
 
     const circles = [];
@@ -57,7 +59,7 @@ const Index = () => {
           className="circle"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
-          onMouseDown={handleMouseDown}
+          onClick={(e) => handleMouseDown(i, e)}
         >
           {date?.toString()}
         </p>
@@ -141,9 +143,10 @@ const Index = () => {
         <div>
           {isTrue ? (
             <div>
-              {currentDiaryList.map((item) => {
-                return <StatsGridIcons key={item.date} stat={item} />;
-              })}
+              <StatsGridIcons
+                key={currentDiaryList[selectedIndex]?.date}
+                stat={currentDiaryList[selectedIndex]}
+              />
             </div>
           ) : (
             <p>False</p>
