@@ -20,6 +20,7 @@ import { useCurrentDiaryList } from '@/global-states/atom';
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { currentDiaryList, setCurrentDiaryList } = useCurrentDiaryList();
+  // const {totalCircles, setCircles} = useState([]);
   //  setCurrentDiaryList
   const handleToglle = () => {
     setIsOpen(!isOpen);
@@ -35,7 +36,11 @@ const Index = () => {
       e.target.style.zIndex = '10';
     };
     const circles = [];
-    for (let i = 0; i < 15; i += 1) {
+    for (let i = 0; i < currentDiaryList.length; i += 1) {
+      const date = currentDiaryList[i]?.date;
+      // const activity = currentDiaryList[i]?.activity;
+      // const details = currentDiaryList[i]?.details;
+      console.log(date);
       circles.push(
         <p
           key={i}
@@ -43,18 +48,19 @@ const Index = () => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          {i}
+          {date?.toString()}
         </p>
       );
     }
+
     return circles;
   };
 
   const form = useForm({
     initialValues: {
-      details: 'd',
-      activity: 'a',
-      date: '2023/01/01',
+      details: '',
+      activity: '',
+      date: '',
     },
   });
 
@@ -63,12 +69,11 @@ const Index = () => {
   };
 
   console.log(currentDiaryList);
-
   return (
     <RecoilRoot>
       const exampledata = useRecoilState(datas);
       <AppLayout>
-        <Button onClick={handleToglle}>toggle</Button>
+        <Button onClick={handleToglle}>New</Button>
         {isOpen ? (
           <div>
             <form onSubmit={form.onSubmit((values) => console.log(values))}>
@@ -86,6 +91,9 @@ const Index = () => {
                   { value: 'drive', label: 'Drive to' },
                   { value: 'stay', label: 'Stay at ' },
                   { value: 'eat', label: 'Eat' },
+                  { value: 'play', label: 'Play' },
+                  { value: 'meet', label: 'Meet' },
+                  { value: 'study', label: 'Study' },
                 ]}
                 {...form.getInputProps('activity')}
               />
@@ -113,10 +121,6 @@ const Index = () => {
             {displayCircles()}
           </Flex>
         </ScrollArea>
-
-        {form.values.activity}
-        {form.values.details}
-        {form.values.date.toString()}
       </AppLayout>
     </RecoilRoot>
   );
