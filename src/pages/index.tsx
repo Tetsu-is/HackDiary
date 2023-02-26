@@ -13,18 +13,22 @@ import { useForm } from '@mantine/form';
 import { useState } from 'react';
 import { RecoilRoot } from 'recoil';
 
+import { StatsGridIcons } from '@/components/DetailView';
 import { AppLayout } from '@/components/layouts/layout';
-import { useCurrentDiaryList } from '@/global-states/atom';
+import { useCurrentDiaryList } from '@/globalstates/atom';
 
 // rootのページ
 const Index = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isTrue] = useState(true);
   const { currentDiaryList, setCurrentDiaryList } = useCurrentDiaryList();
   // const {totalCircles, setCircles} = useState([]);
   //  setCurrentDiaryList
   const handleToglle = () => {
     setIsOpen(!isOpen);
   };
+
+  // const displayRectangles = () => {};
 
   const displayCircles = () => {
     const handleMouseEnter = (e: any) => {
@@ -35,6 +39,12 @@ const Index = () => {
       e.target.style.transform = 'scale(1)';
       e.target.style.zIndex = '10';
     };
+    const handleMouseDown = (e: any) => {
+      e.target.style.transform = 'scale(2)';
+      e.target.style.zIndex = '20';
+      console.log('mouseDown');
+    };
+
     const circles = [];
     for (let i = 0; i < currentDiaryList.length; i += 1) {
       const date = currentDiaryList[i]?.date;
@@ -47,6 +57,7 @@ const Index = () => {
           className="circle"
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
+          onMouseDown={handleMouseDown}
         >
           {date?.toString()}
         </p>
@@ -65,8 +76,14 @@ const Index = () => {
   });
 
   const saveDiary = () => {
+    console.log(form.values);
+    form.values.date = form.values.date.toString();
     setCurrentDiaryList(() => [...currentDiaryList, form.values]);
   };
+
+  // const detailViewList = () => {
+  // const object = currentDiaryList.filter(() => {});
+  // };
 
   console.log(currentDiaryList);
   return (
@@ -121,6 +138,18 @@ const Index = () => {
             {displayCircles()}
           </Flex>
         </ScrollArea>
+        <div>
+          {isTrue ? (
+            <div>
+              {currentDiaryList.map((item) => {
+                return <StatsGridIcons key={item.date} stat={item} />;
+              })}
+            </div>
+          ) : (
+            <p>False</p>
+          )}
+          ;
+        </div>
       </AppLayout>
     </RecoilRoot>
   );
