@@ -91,6 +91,9 @@ const Index = () => {
                   { value: 'drive', label: 'Drive to' },
                   { value: 'stay', label: 'Stay at ' },
                   { value: 'eat', label: 'Eat' },
+                  { value: 'play', label: 'Play' },
+                  { value: 'meet', label: 'Meet' },
+                  { value: 'study', label: 'Study' },
                 ]}
                 {...form.getInputProps('activity')}
               />
