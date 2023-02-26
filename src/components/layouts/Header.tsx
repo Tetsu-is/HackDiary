@@ -34,7 +34,7 @@ export const AppHeader: FC = () => {
         </Anchor>
 
         <Flex sx={{ marginLeft: '10px', marginTop: '5px', fontSize: 132 }}>
-          <Text weight="bold" sx={{ fontSize: 30 }} width="200px">
+          <Text weight="bold" sx={{ fontSize: 30 }}>
             ~ 爆速日記 ~
           </Text>
         </Flex>
